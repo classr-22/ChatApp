@@ -7,12 +7,50 @@
   }
 
  .WorkArea-Container{
-  flex: 0.3;
+  flex: 0.7;
+  background-color: aqua;
   /* border: solid red 5px; */
  }
 
  .SideBar-Container{
-  flex: 0.7;
+  flex: 0.3;
   /* border: solid blue 5px; */
+  display: flex;
+  flex-direction: column;
  }
+
+ .sb-header{
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px 10px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ }
+
+ .sb-search{
+  background-color: white;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+ }
+
+ .search-box{
+  border: none;
+  outline-width: 0;
+  margin-left: 10px;
+  font-size: 1.25rem;
+ }
+
+ .sb-coversations{
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px 10px;
+  margin: 10px;
+  flex: 1;
+ }
+
   

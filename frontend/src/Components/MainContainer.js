@@ -6,8 +6,9 @@ import SideBar from './SideBar'
 function MainContainer() {
   return (
     <div className='Maincontainer'>
-        <WorkArea></WorkArea>
         <SideBar></SideBar>
+        <WorkArea></WorkArea>
+        
     </div>
   )
 }
