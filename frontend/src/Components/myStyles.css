@@ -37,6 +37,11 @@
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    scrollbar-width: none;
+ }
+
+ .Chat-messages::-webkit-scrollbar{
+   display: none;
  }
 
  .chat-MessageSelf{
