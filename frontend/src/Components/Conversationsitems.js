@@ -1,15 +1,13 @@
 import React from 'react'
 
-function Conversationsitems() {
+function Conversationsitems({props}) {
   return (
-    <>
-        <div>Conversationsitems</div>
-        <img style={{height:"40px", width:"40px" , border:"round"}} src='https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg?auto=compress&cs=tinysrgb&w=600'></img>
-            <div style={{marginLeft:"20px"}}>
-            <div style={{fontSize:"10px"}}>Sample Chat</div>
-            <div>Last Message</div>
-        </div>
-    </>
+   <div className='conversation-container'>
+        <div className='con-icon'>{props.name[0]}</div>
+        <div className='con-title'>{props.name}</div>
+        <div className='con-lastMessage'>{props.lastMessage}</div>
+        <div className='con-timeStamp'>{props.timeStamp}</div>
+    </div>
   )
 }
 
