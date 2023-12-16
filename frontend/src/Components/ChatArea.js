@@ -19,8 +19,14 @@ function ChatArea({props}) {
             </IconButton>
         </div>
         <div className='Chat-messages'>
+            <MessageSelf></MessageSelf>
             <MessageOther></MessageOther>
             <MessageSelf></MessageSelf>
+            <MessageSelf></MessageSelf>
+            <MessageSelf></MessageSelf>
+            <MessageOther></MessageOther>
+            <MessageOther></MessageOther>
+            <MessageOther></MessageOther>
         </div>
         <div className='Chat-textarea'>
             <input type='text' placeholder='Type a message' className='search-box'></input>
