@@ -4,6 +4,7 @@ import SideBar from './SideBar'
 import ChatArea from './ChatArea'
 import Welcom from './Welcom'
 import CreateGroups from './CreateGroups'
+import Users_Groups from './Users_Groups'
 
 function MainContainer() {
 
@@ -12,7 +13,8 @@ function MainContainer() {
   return (
     <div className='Maincontainer'>
         <SideBar></SideBar>
-        <CreateGroups></CreateGroups>
+        <Users_Groups></Users_Groups>
+        {/* <CreateGroups></CreateGroups> */}
         {/* <Welcom></Welcom> */}
         {/* <ChatArea props={chat}></ChatArea> */}
     </div>
