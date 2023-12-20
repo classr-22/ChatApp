@@ -1,8 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function Conversationsitems({props}) {
+  const navigate = useNavigate();
   return (
-   <div className='conversation-container'>
+   <div className='conversation-container CreateGroups-container' onClick={()=>{
+    navigate('chat')
+  }}>
         <div className='con-icon'>{props.name[0]}</div>
         <div className='con-title'>{props.name}</div>
         <div className='con-lastMessage'>{props.lastMessage}</div>

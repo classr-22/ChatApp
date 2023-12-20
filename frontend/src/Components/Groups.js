@@ -1,9 +1,9 @@
+import { IconButton } from '@mui/material'
 import React, { useState } from 'react'
-import './myStyles.css'
-import { IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import './myStyles.css'
 
-function Users_Groups() {
+function Groups() {
 
     const [Conversations,setConversations] = useState([
         {
@@ -54,7 +54,6 @@ function Users_Groups() {
     ]); 
 
   return (
-        
     <div style={{display:"flex",flex:"0.7",flexDirection:"column"}}>
         
         <div style={{
@@ -62,7 +61,7 @@ function Users_Groups() {
             backgroundColor:"white",borderRadius:"20px",margin:"10px",padding:"14px 10px"    
         }} className='CreateGroups-container'>
             <img style={{height:"40px",width:"40px"}} src={require('./live-chat.png')}></img>
-            <p style={{fontFamily:"sans-serif Tahoma Geneva Verdana 'Segon UI'" , fontWeight:"bold" , color:"rgba(0,0,0,0.54)"}}>Online Users</p>
+            <p style={{fontFamily:"sans-serif Tahoma Geneva Verdana 'Segon UI'" , fontWeight:"bold" , color:"rgba(0,0,0,0.54)"}}>Available Groups</p>
         </div>
         
         <div className='sb-search'>
@@ -91,4 +90,4 @@ function Users_Groups() {
   )
 }
 
-export default Users_Groups
+export default Groups

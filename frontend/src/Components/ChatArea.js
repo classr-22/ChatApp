@@ -1,11 +1,21 @@
 import { IconButton } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import MessageOther from './MessageOther';
 import MessageSelf from './MessageSelf';
 
-function ChatArea({props}) {
+
+function ChatArea() {
+
+    const [props,setChat] = useState(
+        {
+            name: "Test#1",
+            timeStamp: "online"
+        }
+    );
+
+
   return (
     <div className='Chat-Container'>
         <div className='Chat-header'>

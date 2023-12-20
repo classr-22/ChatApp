@@ -8,8 +8,11 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import { IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import Conversationsitems from './Conversationsitems';
+import { useNavigate } from 'react-router-dom';
 
 function SideBar() {
+
+  const navigate = useNavigate();
 
   const [Conversations,setConversations] = useState([
     {
@@ -26,6 +29,36 @@ function SideBar() {
       name: "Test#3",
       lastMessage: "Last Message#3",
       timeStamp: "today"
+    },
+    {
+      name: "Test#2",
+      lastMessage: "Last Message#2",
+      timeStamp: "today"
+    },
+    {
+      name: "Test#2",
+      lastMessage: "Last Message#2",
+      timeStamp: "today"
+    },
+    {
+      name: "Test#2",
+      lastMessage: "Last Message#2",
+      timeStamp: "today"
+    },
+    {
+      name: "Test#2",
+      lastMessage: "Last Message#2",
+      timeStamp: "today"
+    },
+    {
+      name: "Test#2",
+      lastMessage: "Last Message#2",
+      timeStamp: "today"
+    },
+    {
+      name: "Test#2",
+      lastMessage: "Last Message#2",
+      timeStamp: "today"
     }
   ]);
 
@@ -38,13 +71,19 @@ function SideBar() {
           </IconButton>
         </div>
         <div>
-        <IconButton>
-          <GroupAddOutlinedIcon style={{padding:"5px"}}></GroupAddOutlinedIcon>
-        </IconButton>
-        <IconButton>
+        <IconButton onClick={()=>{
+            navigate('users');
+        }}>
           <PersonAddAltOutlinedIcon></PersonAddAltOutlinedIcon>
         </IconButton>
-        <IconButton>
+        <IconButton onClick={()=>{
+            navigate('groups');
+        }}>
+          <GroupAddOutlinedIcon style={{padding:"5px"}}></GroupAddOutlinedIcon>
+        </IconButton>
+        <IconButton onClick={()=>{
+            navigate('create-groups');
+        }}>
           <ControlPointOutlinedIcon></ControlPointOutlinedIcon>
         </IconButton>
         <IconButton>
@@ -60,7 +99,7 @@ function SideBar() {
       </div>
       <div className='sb-coversations'>
         {Conversations.map((conversation)=>{
-          return <Conversationsitems props={conversation} key={conversation.name}></Conversationsitems>
+          return <Conversationsitems props={conversation} key={conversation.name} ></Conversationsitems>
         })}
       </div>
     </div>

@@ -5,15 +5,14 @@ import ChatArea from './ChatArea'
 import Welcom from './Welcom'
 import CreateGroups from './CreateGroups'
 import Users_Groups from './Users_Groups'
+import { Outlet } from 'react-router-dom'
 
 function MainContainer() {
-
-  const [chat,setChat] = useState({name: "Test#1",
-  timeStamp: "online"});
   return (
     <div className='Maincontainer'>
         <SideBar></SideBar>
-        <Users_Groups></Users_Groups>
+        <Outlet/>
+        {/* <Users_Groups></Users_Groups> */}
         {/* <CreateGroups></CreateGroups> */}
         {/* <Welcom></Welcom> */}
         {/* <ChatArea props={chat}></ChatArea> */}
