@@ -2,9 +2,10 @@ import { IconButton } from '@mui/material'
 import React, { useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import './myStyles.css'
+import { useSelector } from 'react-redux';
 
 function Groups() {
-
+    const lightTheme = useSelector((state)=>state.themeKey);
     const [Conversations,setConversations] = useState([
         {
           name: "Test User#1",
@@ -59,28 +60,33 @@ function Groups() {
         <div style={{
             display:"flex",justifyContent:"start",alignItems:"center",gap:"10px",
             backgroundColor:"white",borderRadius:"20px",margin:"10px",padding:"14px 10px"    
-        }} className='CreateGroups-container'>
+        }} className={'CreateGroups-container'+((lightTheme)?"":" dark")}>
             <img style={{height:"40px",width:"40px"}} src={require('./live-chat.png')}></img>
-            <p style={{fontFamily:"sans-serif Tahoma Geneva Verdana 'Segon UI'" , fontWeight:"bold" , color:"rgba(0,0,0,0.54)"}}>Available Groups</p>
+            <p 
+            style={{fontFamily:"sans-serif Tahoma Geneva Verdana 'Segon UI'" , fontWeight:"bold" , 
+            color:"rgba(0,0,0,0.54)"}}
+            className={((lightTheme)?"":" dark")}>
+                Available Groups
+            </p>
         </div>
         
-        <div className='sb-search'>
+        <div className={'sb-search'+((lightTheme)?"":" dark")}>
             <IconButton>
-            <SearchIcon></SearchIcon>
+            <SearchIcon className={((lightTheme)?"":" dark")}></SearchIcon>
             </IconButton>
-            <input type='text' placeholder='search' className='search-box'></input>
+            <input type='text' placeholder='search' className={'search-box'+((lightTheme)?"":" dark")}></input>
         </div>
         
         <div style={{flex:"1",overflowY:"scroll"}} 
         className='Users_Groups_container'>
             {Conversations.map((conversation)=>{
                 return( 
-                <div className='conversation-container CreateGroups-container user-container' style={{
+                <div className={'conversation-container CreateGroups-container user-container'+((lightTheme)?"":" dark")} style={{
                     margin:"10px 10px",padding:"15px 10px",
                     display:"flex",justifyContent:"start",alignItems:"center",gap:"10px",borderRadius:"20px",
                 }}>
                     <div className='con-icon'>{conversation.name[0]}</div>
-                    <div className='con-title'>{conversation.name}</div>
+                    <div className={'con-title'+((lightTheme)?"":" text-dark")}>{conversation.name}</div>
                 </div>
             )})}
         </div>

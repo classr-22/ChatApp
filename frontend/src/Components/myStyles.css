@@ -6,6 +6,10 @@
   }
 }
 
+.text-dark{
+  color: whitesmoke !important;
+}
+
 .icon{
   width: 1.25em !important;
   height: 1.25em !important;
@@ -23,6 +27,7 @@
   flex: 0.7;
   display: flex;
   flex-direction: column;
+  min-width: 10px;
  }
 
  .Chat-header{
@@ -116,6 +121,7 @@
   margin-left: 10px;
   font-size: 1.25rem;
   color: rgba(0, 0, 0, 0.54);
+  min-width: 0px;
  }
 
  .sb-coversations{
@@ -200,6 +206,7 @@
 
  .CreateGroups-container{
    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+   min-width: 0px;
  }
 
  .Welcom-container{
@@ -216,10 +223,71 @@
  }
 
  .user-container:hover{
-   background-color: rgb(226,226,226);
+   background-color: rgb(226,226,226) !important;
  }
 
  .user-container:active{
-   background-color: white;
+   background-color: white !important;
  }
+
+ @media only screen and (max-width: 40em) {
+    .sb-search{
+      display: none;
+    }
+    
+    .sb-coversations{
+      display: none;
+    }
+    
+    .sb-header{
+      flex-direction: column;
+      flex: 1;
+      justify-content: start;
+      width: min-content;
+      gap: 60px;
+    }
+
+    .sb-header-1{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sb-header-2{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+    }
+
+
+    .Chat-Container{
+      flex: 1;
+      min-width: 0px;
+    }
+
+    .SideBar-Container{
+      flex: 0;
+    }
+
+    .Maincontainer{
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .search-box{
+      min-width: 0px;
+    }
+    
+    .CreateGroupsClass{
+      flex: 1 !important;
+      min-width: 0px;
+    }
+
+    .CreateGroups-container{
+      min-width: 0px;
+    }
+}
   

@@ -10,12 +10,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import Conversationsitems from './Conversationsitems';
 import { useNavigate } from 'react-router-dom';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { toogleTheme } from '../Features/themeSlice';
 
 function SideBar() {
 
   const navigate = useNavigate();
-  const [lightTheme , setLightTheme] = useState(false);
+  const dispatch = useDispatch();
+  const lightTheme = useSelector((state)=>state.themeKey);
   const [Conversations,setConversations] = useState([
     {
       name: "Test#1",
@@ -67,12 +69,12 @@ function SideBar() {
   return (
     <div className='SideBar-Container'>
       <div className={'sb-header'+ ((lightTheme)?"":" dark")}>
-        <div>
+        <div className='sb-header-1'>
           <IconButton>
             <AccountCircleOutlinedIcon className={'icon'+ ((lightTheme)?"":" dark")}></AccountCircleOutlinedIcon>
           </IconButton>
         </div>
-        <div>
+        <div className='sb-header-2'>
         <IconButton onClick={()=>{
             navigate('users');
         }}>
@@ -89,7 +91,7 @@ function SideBar() {
           <ControlPointOutlinedIcon className={'icon'+ ((lightTheme)?"":" dark")}></ControlPointOutlinedIcon>
         </IconButton>
         <IconButton onClick={()=>{
-          setLightTheme(!lightTheme)
+          dispatch(toogleTheme())
         }}>
           {lightTheme && <DarkModeOutlinedIcon className={'icon'+ ((lightTheme)?"":" dark")}></DarkModeOutlinedIcon>}
           {!lightTheme && <LightModeOutlinedIcon className={'icon'+ ((lightTheme)?"":" dark")}></LightModeOutlinedIcon>}
