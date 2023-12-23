@@ -289,5 +289,21 @@
     .CreateGroups-container{
       min-width: 0px;
     }
+
+    .Welcom-container{
+      flex: 1 !important;
+      min-width: 0px;
+    }
+
+
+    .welcome-image{
+      min-width: 0px;
+      height: 150px !important;
+      width: 150px !important;
+    }
+
+    .welcome-text{
+      min-width: 0px;
+    }
 }
   

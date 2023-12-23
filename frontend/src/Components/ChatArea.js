@@ -4,10 +4,11 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import MessageOther from './MessageOther';
 import MessageSelf from './MessageSelf';
+import { useSelector } from 'react-redux';
 
 
 function ChatArea() {
-
+    const lightTheme = useSelector((state)=>state.themeKey);
     const [props,setChat] = useState(
         {
             name: "Test#1",
@@ -18,17 +19,17 @@ function ChatArea() {
 
   return (
     <div className='Chat-Container'>
-        <div className='Chat-header'>
+        <div  className={'Chat-header'+ ((lightTheme)?"":" dark")}>
             <p className='con-icon'>{props.name[0]}</p>
             <div className='header-text'>
-                <p className='con-title'>{props.name}</p>
-                <p className='con-timeStamp'>{props.timeStamp}</p>
+                <p  className={'con-title'+ ((lightTheme)?"":" text-dark")}>{props.name}</p>
+                <p  className={'con-timeStamp'+ ((lightTheme)?"":" text-dark")}>{props.timeStamp}</p>
             </div>
             <IconButton>
-                <DeleteOutlineOutlinedIcon></DeleteOutlineOutlinedIcon>
+                <DeleteOutlineOutlinedIcon className={((lightTheme)?"":"dark")}></DeleteOutlineOutlinedIcon>
             </IconButton>
         </div>
-        <div className='Chat-messages'>
+        <div className={'Chat-messages'+ ((lightTheme)?"":" dark")}>
             <MessageSelf></MessageSelf>
             <MessageOther></MessageOther>
             <MessageSelf></MessageSelf>
@@ -38,10 +39,10 @@ function ChatArea() {
             <MessageOther></MessageOther>
             <MessageOther></MessageOther>
         </div>
-        <div className='Chat-textarea'>
-            <input type='text' placeholder='Type a message' className='search-box'></input>
+        <div className={'Chat-textarea'+ ((lightTheme)?"":" dark")}>
+            <input type='text' placeholder='Type a message' className={'search-box'+ ((lightTheme)?"":" dark")}></input>
             <IconButton>
-                <SendOutlinedIcon></SendOutlinedIcon>
+                <SendOutlinedIcon className={((lightTheme)?"":" dark")}></SendOutlinedIcon>
             </IconButton>
         </div>
     </div>
