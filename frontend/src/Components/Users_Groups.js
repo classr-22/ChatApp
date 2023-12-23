@@ -3,6 +3,7 @@ import './myStyles.css'
 import { IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useSelector } from 'react-redux';
+import { motion, AnimatePresence } from "framer-motion"
 
 function Users_Groups() {
     const lightTheme = useSelector((state)=>state.themeKey);
@@ -55,8 +56,17 @@ function Users_Groups() {
     ]); 
 
   return (
-        
-    <div style={{display:"flex",flex:"0.7",flexDirection:"column"}}>
+    <AnimatePresence>
+    <motion.div 
+    initial={{ opacity: 0 , scale:0}}
+    animate={{ opacity: 1 , scale:1}}
+    exit={{ opacity: 0, scale:0}}
+    transition={{
+        ease: "anticipate",
+        duration: "0.3"
+    }} 
+        style={{display:"flex",flex:"0.7",flexDirection:"column"}}
+    >
         
         <div style={{
             display:"flex",justifyContent:"start",alignItems:"center",gap:"10px",
@@ -82,18 +92,19 @@ function Users_Groups() {
         className='Users_Groups_container'>
             {Conversations.map((conversation)=>{
                 return( 
-                <div className={'conversation-container CreateGroups-container user-container'+((lightTheme)?"":" dark")} style={{
+                <motion.div whileHover={{scale:"1.01"}} whileTap={{scale:"0.98"}} 
+                    className={'conversation-container CreateGroups-container user-container'+((lightTheme)?"":" dark")} style={{
                     margin:"10px 10px",padding:"15px 10px",
                     display:"flex",justifyContent:"start",alignItems:"center",gap:"10px",borderRadius:"20px",
                 }}>
                     <div className='con-icon'>{conversation.name[0]}</div>
                     <div className={'con-title'+((lightTheme)?"":" text-dark")}>{conversation.name}</div>
-                </div>
+                </motion.div>
             )})}
         </div>
 
-    </div>
-     
+    </motion.div>
+    </AnimatePresence>
   )
 }
 

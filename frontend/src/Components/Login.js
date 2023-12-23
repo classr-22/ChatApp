@@ -2,14 +2,26 @@ import { Button } from '@mui/material'
 import React from 'react'
 import './myStyles.css'
 import TextField from '@mui/material/TextField';
+import { motion, AnimatePresence } from "framer-motion"
 
 function Login() {
    
   return (
-    <div style={{
+    <AnimatePresence>
+    <motion.div 
+         initial={{ opacity: 0 , scale:0}}
+         animate={{ opacity: 1 , scale:1}}
+         exit={{ opacity: 0, scale:0}}
+         transition={{
+             ease: "anticipate",
+             duration: "0.3"
+         }}
+        style={{
         backgroundColor:"#f4f5f8",display:"flex",justifyContent:"center",alignItems:"center",height:"90vh",
         width:"90vw",borderRadius:"20px"   
-    }} className='Login-container'>
+        }} 
+        className='Login-container'
+    >
         
         <div style={{display:"flex",flex:"0.3",justifyContent:"center",alignItems:"center"}}>
             <img src="live-chat.png" style={{height:"300px",width:"300px"}}/>
@@ -39,7 +51,8 @@ function Login() {
             </div>
             <Button variant="outlined" size='large'>Login</Button>
         </div>
-    </div>
+    </motion.div>
+    </AnimatePresence>
   )
 }
 
