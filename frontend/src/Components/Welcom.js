@@ -2,10 +2,19 @@ import React from 'react'
 import './myStyles.css'
 import { useSelector } from 'react-redux';
 import { motion, AnimatePresence } from "framer-motion"
+import { useNavigate } from 'react-router-dom';
 
 
 function Welcom() {
   const lightTheme = useSelector((state)=>state.themeKey);
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  console.log(userData);
+  const nav = useNavigate();
+  if(!userData){
+    console.log("User is not Authenticated");
+    nav("/")
+  }
+
   return (
     <AnimatePresence>
     <motion.div 
