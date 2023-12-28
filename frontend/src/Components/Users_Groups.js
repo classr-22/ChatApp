@@ -1,59 +1,42 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
+import { useNavigate } from 'react-router-dom';
 import './myStyles.css'
 import { IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useSelector } from 'react-redux';
 import { motion, AnimatePresence } from "framer-motion"
+import axios from "axios";
 
 function Users_Groups() {
+    const [refresh,setRefresh] = useState(true);
     const lightTheme = useSelector((state)=>state.themeKey);
-    const [Conversations,setConversations] = useState([
-        {
-          name: "Test User#1",
-          lastMessage: "Last Message#1",
-          timeStamp: "today"
-        },
-        {
-            name: "Test User#1",
-            lastMessage: "Last Message#1",
-            timeStamp: "today"
-        },
-        {
-            name: "Test User#1",
-            lastMessage: "Last Message#1",
-            timeStamp: "today"
-        },
-        {
-            name: "Test User#1",
-            lastMessage: "Last Message#1",
-            timeStamp: "today"
-        },
-        {
-            name: "Test User#1",
-            lastMessage: "Last Message#1",
-            timeStamp: "today"
-        },
-        {
-            name: "Test User#1",
-            lastMessage: "Last Message#1",
-            timeStamp: "today"
-        },
-        {
-            name: "Test User#1",
-            lastMessage: "Last Message#1",
-            timeStamp: "today"
-        },
-        {
-            name: "Test User#1",
-            lastMessage: "Last Message#1",
-            timeStamp: "today"
-        },
-        {
-            name: "Test User#1",
-            lastMessage: "Last Message#1",
-            timeStamp: "today"
+    const [Conversations,setConversations] = useState([]); 
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    console.log(userData);
+    const nav = useNavigate();
+
+    if(!userData){
+        console.log("User is not authenticated");
+        nav(-1);
+    }
+
+    useEffect(()=>{
+        console.log("user refreshed");
+        const config = {
+            headers:{
+                Authorization: `Bearer ${userData.data.token}`
+            }
         }
-    ]); 
+
+        axios.get("http://localhost:5000/user/fetchUsers/",config).then((data)=>{
+            console.log("user Data from API",data)
+            setConversations(data.data);
+        }).catch(error => {
+            console.error('Error:', error.message,"vghsvgcvsdhcvhsdvhvsdh");
+          });
+    },[refresh]);
+
+
 
   return (
     <AnimatePresence>
