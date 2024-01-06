@@ -1,59 +1,43 @@
 import { IconButton } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import './myStyles.css'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { motion, AnimatePresence } from "framer-motion"
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { myContext } from "./MainContainer"
 
 function Groups() {
+    const { refresh, setRefresh } = useContext(myContext);
     const lightTheme = useSelector((state)=>state.themeKey);
-    const [Conversations,setConversations] = useState([
-        {
-          name: "Test User#1",
-          lastMessage: "Last Message#1",
-          timeStamp: "today"
-        },
-        {
-            name: "Test User#1",
-            lastMessage: "Last Message#1",
-            timeStamp: "today"
-        },
-        {
-            name: "Test User#1",
-            lastMessage: "Last Message#1",
-            timeStamp: "today"
-        },
-        {
-            name: "Test User#1",
-            lastMessage: "Last Message#1",
-            timeStamp: "today"
-        },
-        {
-            name: "Test User#1",
-            lastMessage: "Last Message#1",
-            timeStamp: "today"
-        },
-        {
-            name: "Test User#1",
-            lastMessage: "Last Message#1",
-            timeStamp: "today"
-        },
-        {
-            name: "Test User#1",
-            lastMessage: "Last Message#1",
-            timeStamp: "today"
-        },
-        {
-            name: "Test User#1",
-            lastMessage: "Last Message#1",
-            timeStamp: "today"
-        },
-        {
-            name: "Test User#1",
-            lastMessage: "Last Message#1",
-            timeStamp: "today"
-        }
-    ]); 
+    const dispatch = useDispatch();
+    const [groups, SetGroups] = useState([]);
+
+    const userData = JSON.parse(localStorage.getItem("userData"));
+  // console.log("Data from LocalStorage : ", userData);
+  const nav = useNavigate();
+  if (!userData) {
+    console.log("User not Authenticated");
+    nav("/");
+  }
+
+  const user = userData.data;
+  useEffect(() => {
+    console.log("Users refreshed : ", user.token);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    };
+
+    axios
+      .get("http://localhost:5000/chat/fetchGroups", config)
+      .then((response) => {
+        console.log("Group Data from API ", response.data);
+        SetGroups(response.data);
+      });
+  }, [refresh]);
 
   return (
     <AnimatePresence>
@@ -90,15 +74,15 @@ function Groups() {
         
         <div style={{flex:"1",overflowY:"scroll"}} 
         className='Users_Groups_container'>
-            {Conversations.map((conversation)=>{
+            {groups.map((group)=>{
                 return( 
                 <motion.div whileHover={{scale:"1.01"}} whileTap={{scale:"0.98"}}  
                     className={'conversation-container CreateGroups-container user-container'+((lightTheme)?"":" dark")} style={{
                     margin:"10px 10px",padding:"15px 10px",
                     display:"flex",justifyContent:"start",alignItems:"center",gap:"10px",borderRadius:"20px",
                 }}>
-                    <div className='con-icon'>{conversation.name[0]}</div>
-                    <div className={'con-title'+((lightTheme)?"":" text-dark")}>{conversation.name}</div>
+                    <div className='con-icon'>{group.chatName[0]}</div>
+                    <div className={'con-title'+((lightTheme)?"":" text-dark")}>{group.chatName}</div>
                 </motion.div>
             )})}
         </div>

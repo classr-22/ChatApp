@@ -8,8 +8,10 @@ function Conversationsitems({props}) {
   const lightTheme = useSelector((state)=>state.themeKey)
   return (
    <motion.div 
-    whileHover={{scale:"1.02"}} whileTap={{scale:"0.98"}} 
-    className='conversation-container CreateGroups-container' onClick={()=>{
+    whileHover={{scale:"1.02"}} 
+    whileTap={{scale:"0.98"}} 
+    className='conversation-container CreateGroups-container' 
+    onClick={()=>{
     navigate('chat')
   }}>
         <div className='con-icon'>{props.name[0]}</div>

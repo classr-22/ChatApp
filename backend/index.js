@@ -2,6 +2,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connect = require('./connection/mongodbConnection')
 const userRouter = require('./Routes/userRoutes')
+const chatRoutes = require("./Routes/chatRoutes");
+const messageRoutes = require("./Routes/messageRoutes");
 const app = express();
 const cors = require('cors');
 
@@ -20,6 +22,8 @@ app.get('/', (req,res)=>{
 })
 
 app.use('/user', userRouter);
+app.use("/chat", chatRoutes);
+app.use("/message", messageRoutes);
 
 connect();
 app.listen(PORT, () => {

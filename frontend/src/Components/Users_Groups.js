@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import './myStyles.css'
 import { IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { motion, AnimatePresence } from "framer-motion"
 import axios from "axios";
+import { refreshSidebarFun } from "../Features/refreshSidebar";
 
 function Users_Groups() {
     const [refresh,setRefresh] = useState(true);
@@ -14,6 +15,7 @@ function Users_Groups() {
     const userData = JSON.parse(localStorage.getItem("userData"));
     console.log(userData);
     const nav = useNavigate();
+    const dispatch = useDispatch();
 
     if(!userData){
         console.log("User is not authenticated");
@@ -73,13 +75,32 @@ function Users_Groups() {
         
         <div style={{flex:"1",overflowY:"scroll"}} 
         className='Users_Groups_container'>
-            {Conversations.map((conversation)=>{
+            {Conversations.map((conversation,index)=>{
                 return( 
-                <motion.div whileHover={{scale:"1.01"}} whileTap={{scale:"0.98"}} 
+                <motion.div 
+                    whileHover={{scale:"1.01"}} whileTap={{scale:"0.98"}} 
                     className={'conversation-container CreateGroups-container user-container'+((lightTheme)?"":" dark")} style={{
                     margin:"10px 10px",padding:"15px 10px",
                     display:"flex",justifyContent:"start",alignItems:"center",gap:"10px",borderRadius:"20px",
-                }}>
+                    }}
+                    key={index}
+                    onClick={() => {
+                      console.log("Creating chat with ", conversation.name);
+                      const config = {
+                        headers: {
+                          Authorization: `Bearer ${userData.data.token}`,
+                        },
+                      };
+                      axios.post(
+                        "http://localhost:5000/chat/",
+                        {
+                          userId: conversation._id,
+                        },
+                        config
+                      );
+                      dispatch(refreshSidebarFun());
+                    }}
+                >
                     <div className='con-icon'>{conversation.name[0]}</div>
                     <div className={'con-title'+((lightTheme)?"":" text-dark")}>{conversation.name}</div>
                 </motion.div>
