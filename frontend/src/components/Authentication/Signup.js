@@ -125,6 +125,7 @@ const Signup = () => {
         position: "bottom",
       });
       setPicLoading(false);
+      history.push("/chats");
       return;
     }
   };
