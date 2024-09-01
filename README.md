@@ -10,7 +10,20 @@ Uses Socket.io for real time communication and stores user details in encrypted 
 **Server:** Node JS, Express JS
 
 **Database:** Mongo DB
-  
+
+## How to run project
+
+_Below is an example of how you can run project after opening project folder._
+
+1. Open terminal in frontend folder and run following command 
+   ```sh
+   npm start
+   ```
+2. Open terminal in main project folder and run following command
+   ```sh
+   node backend/server.js
+   ```
+
 ## Demo
 ### Home
 ![](https://github.com/piyush-eon/mern-chat-app/blob/master/screenshots/group%20%2B%20notif.PNG)
